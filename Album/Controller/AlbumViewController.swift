@@ -19,7 +19,6 @@ class AlbumViewController: UIViewController {
     var albumViewModel = AlbumViewModel()
     
     var isFiltering: Bool {
-        albumViewModel.selectedAlbums.removeAll()
         return searchController.isActive && !isSearchBarEmpty
     }
     
@@ -61,6 +60,7 @@ class AlbumViewController: UIViewController {
         albumViewModel.searchedAlbums = albumViewModel.albums.filter { (album: Album) -> Bool in
             return album.trackName.lowercased().contains(searchText.lowercased()) || album.artistName.lowercased().contains(searchText.lowercased()) || album.collectionName.lowercased().contains(searchText.lowercased())
         }
+        albumViewModel.selectedAlbums.removeAll()
         albumTable.reloadData()
     }
     
